@@ -12,7 +12,6 @@ const NAV_LINKS = [
   { label: "Цены", href: "#prices" },
   { label: "Гарантии", href: "#guarantees" },
   { label: "О нас", href: "#about" },
-  { label: "Отзывы", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
   { label: "Контакты", href: "#contacts" },
 ];
@@ -348,35 +347,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* REVIEWS */}
-      <section id="reviews" className="py-24 grid-bg relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-14">
-            <p className="font-oswald text-sm tracking-widest uppercase mb-2" style={{ color: "hsl(var(--neon))" }}>// Клиенты о нас</p>
-            <h2 className="section-title text-foreground">Отзывы <span className="neon-text">клиентов</span></h2>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {REVIEWS.map((r) => (
-              <div key={r.name} className="card-tech rounded-lg p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: "hsl(210 100% 56% / 0.15)", border: "1px solid hsl(210 100% 56% / 0.3)" }}>
-                      <span className="font-oswald text-sm font-bold" style={{ color: "hsl(var(--neon))" }}>{r.name[0]}</span>
-                    </div>
-                    <div>
-                      <div className="font-oswald text-sm font-semibold text-foreground">{r.name}</div>
-                      <div className="font-golos text-xs text-muted-foreground">{r.date}</div>
-                    </div>
-                  </div>
-                  <StarRating rating={r.rating} />
-                </div>
-                <p className="font-golos text-sm text-muted-foreground leading-relaxed">"{r.text}"</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* FAQ */}
       <section id="faq" className="py-24" style={{ background: "hsl(220 18% 7%)" }}>
