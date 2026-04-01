@@ -1,8 +1,136 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
+ 
+type ModalDoc = "privacy" | "offer_service" | "offer_parts" | null;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyIcon = any;
+
+const DOCS: Record<NonNullable<ModalDoc>, { title: string; content: string }> = {
+  privacy: {
+    title: "Политика конфиденциальности",
+    content: `1. ОБЩИЕ ПОЛОЖЕНИЯ
+
+Настоящая Политика конфиденциальности регулирует порядок обработки и использования персональных данных физических лиц (пользователей) сервисным центром ТЕХНОХАБ (далее — Оператор).
+
+2. СБОР ПЕРСОНАЛЬНЫХ ДАННЫХ
+
+Оператор собирает следующие персональные данные:
+— Фамилия, имя, отчество;
+— Контактный телефон;
+— Адрес электронной почты;
+— Описание проблемы (по желанию пользователя).
+
+3. ЦЕЛИ ОБРАБОТКИ ДАННЫХ
+
+Персональные данные используются исключительно для:
+— Связи с пользователем по вопросам ремонта техники;
+— Оформления договора на оказание услуг;
+— Информирования об акциях и специальных предложениях (с согласия пользователя).
+
+4. ХРАНЕНИЕ И ЗАЩИТА ДАННЫХ
+
+Оператор принимает необходимые организационные и технические меры для защиты персональных данных от несанкционированного доступа, изменения, раскрытия или уничтожения. Данные хранятся не дольше, чем требуется для выполнения целей обработки.
+
+5. ПЕРЕДАЧА ДАННЫХ ТРЕТЬИМ ЛИЦАМ
+
+Оператор не передаёт персональные данные пользователей третьим лицам без их явного согласия, за исключением случаев, предусмотренных действующим законодательством РФ.
+
+6. ПРАВА ПОЛЬЗОВАТЕЛЯ
+
+Пользователь имеет право:
+— Запросить информацию об обрабатываемых данных;
+— Потребовать исправления или удаления своих данных;
+— Отозвать согласие на обработку персональных данных.
+
+7. КОНТАКТЫ
+
+По всем вопросам, связанным с обработкой персональных данных, обращайтесь: info@technohub.ru
+
+Дата последнего обновления: 1 апреля 2026 г.`,
+  },
+  offer_service: {
+    title: "Публичная оферта на оказание услуг",
+    content: `ПУБЛИЧНАЯ ОФЕРТА НА ОКАЗАНИЕ УСЛУГ ПО РЕМОНТУ И ТЕХНИЧЕСКОМУ ОБСЛУЖИВАНИЮ
+
+Сервисный центр ТЕХНОХАБ (далее — Исполнитель) предлагает любому физическому или юридическому лицу (далее — Заказчик) заключить договор на оказание услуг на следующих условиях.
+
+1. ПРЕДМЕТ ДОГОВОРА
+
+1.1. Исполнитель обязуется оказать услуги по диагностике, ремонту и техническому обслуживанию компьютерной техники (компьютеры, ноутбуки, периферия).
+1.2. Конкретный перечень работ согласовывается с Заказчиком до начала ремонта.
+
+2. ПОРЯДОК ОКАЗАНИЯ УСЛУГ
+
+2.1. Заказчик передаёт технику Исполнителю для диагностики.
+2.2. После диагностики Исполнитель сообщает Заказчику перечень необходимых работ и их стоимость.
+2.3. Работы выполняются только после письменного или устного согласования с Заказчиком.
+
+3. СТОИМОСТЬ И ОПЛАТА
+
+3.1. Стоимость услуг определяется согласно действующему прайс-листу Исполнителя.
+3.2. Диагностика проводится бесплатно.
+3.3. Оплата производится после выполнения работ — наличными или безналичным способом.
+
+4. ГАРАНТИЙНЫЕ ОБЯЗАТЕЛЬСТВА
+
+4.1. Гарантия на выполненные работы — 6 (шесть) месяцев.
+4.2. В гарантийный период Исполнитель устраняет неисправности, возникшие по вине Исполнителя, бесплатно.
+4.3. Гарантия не распространяется на повреждения, возникшие вследствие действий Заказчика или третьих лиц.
+
+5. ОТВЕТСТВЕННОСТЬ СТОРОН
+
+5.1. Исполнитель несёт ответственность за сохранность переданной техники.
+5.2. В случае невозможности ремонта техника возвращается Заказчику в исходном состоянии.
+
+6. АКЦЕПТ ОФЕРТЫ
+
+Передача техники в сервисный центр является акцептом настоящей оферты.
+
+Дата публикации: 1 апреля 2026 г.`,
+  },
+  offer_parts: {
+    title: "Оферта на заказ комплектующих",
+    content: `ПУБЛИЧНАЯ ОФЕРТА НА ПРОДАЖУ КОМПЛЕКТУЮЩИХ И ЗАПАСНЫХ ЧАСТЕЙ
+
+Сервисный центр ТЕХНОХАБ (далее — Продавец) предлагает любому физическому или юридическому лицу (далее — Покупатель) приобрести комплектующие и запасные части на следующих условиях.
+
+1. ПРЕДМЕТ ДОГОВОРА
+
+1.1. Продавец обязуется передать Покупателю оригинальные комплектующие и запасные части для компьютерной техники.
+1.2. Ассортимент, наличие и цены уточняются у менеджера.
+
+2. ОФОРМЛЕНИЕ ЗАКАЗА
+
+2.1. Заказ оформляется лично в сервисном центре, по телефону или через форму обратной связи на сайте.
+2.2. После подтверждения наличия товара Покупатель вносит предоплату 50% от стоимости заказа.
+2.3. Срок поставки под заказ — от 1 до 14 рабочих дней.
+
+3. СТОИМОСТЬ И ОПЛАТА
+
+3.1. Цены указываются в рублях РФ и включают НДС (при наличии).
+3.2. Окончательная стоимость согласовывается с Покупателем до оформления заказа.
+3.3. Оплата производится наличными или безналичным переводом.
+
+4. ГАРАНТИЯ НА КОМПЛЕКТУЮЩИЕ
+
+4.1. Гарантия на оригинальные комплектующие — 12 (двенадцать) месяцев с момента продажи.
+4.2. Гарантия на совместимые (неоригинальные) запчасти — 6 (шесть) месяцев.
+4.3. Гарантийный случай — производственный брак, выявленный при нормальной эксплуатации.
+
+5. ВОЗВРАТ И ОБМЕН
+
+5.1. Возврат или обмен товара надлежащего качества не производится (комплектующие относятся к категории технически сложных товаров).
+5.2. При обнаружении производственного брака — замена на аналогичный товар или возврат денежных средств.
+
+6. АКЦЕПТ ОФЕРТЫ
+
+Внесение предоплаты или полной оплаты заказа является акцептом настоящей оферты.
+
+Дата публикации: 1 апреля 2026 г.`,
+  },
+};
 
 const HERO_IMG = "https://cdn.poehali.dev/projects/c5535973-b2b8-4d63-90a9-152bcbd82a97/files/2c9d0216-3c0e-4a63-9cf2-0f01bb1809ef.jpg";
 const PARTS_IMG = "https://cdn.poehali.dev/projects/c5535973-b2b8-4d63-90a9-152bcbd82a97/files/5d31e387-e8c6-4e52-b608-d791b48336ad.jpg";
@@ -81,9 +209,40 @@ function StarRating({ rating }: { rating: number }) {
 const Index = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeDoc, setActiveDoc] = useState<ModalDoc>(null);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+
+      {/* DOC MODAL */}
+      {activeDoc && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          style={{ background: "rgba(0,0,0,0.8)" }}
+          onClick={() => setActiveDoc(null)}
+        >
+          <div
+            className="relative w-full max-w-2xl max-h-[85vh] rounded-lg overflow-hidden flex flex-col"
+            style={{ background: "hsl(220 18% 9%)", border: "1px solid hsl(210 100% 56% / 0.3)" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "hsl(220 15% 16%)" }}>
+              <h3 className="font-oswald text-lg font-bold text-foreground">{DOCS[activeDoc].title}</h3>
+              <button
+                onClick={() => setActiveDoc(null)}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Icon name="X" size={20} />
+              </button>
+            </div>
+            <div className="overflow-y-auto px-6 py-5">
+              <pre className="font-golos text-sm text-muted-foreground leading-relaxed whitespace-pre-wrap">
+                {DOCS[activeDoc].content}
+              </pre>
+            </div>
+          </div>
+        </div>
+      )}
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 backdrop-blur-md bg-background/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -437,47 +596,79 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="space-y-5">
+            <div className="space-y-4">
               {[
                 { icon: "Phone", label: "Телефон", value: "+7 (495) 123-45-67", href: "tel:+74951234567", hint: "Звоните с 9:00 до 21:00, без выходных" },
                 { icon: "MessageCircle", label: "WhatsApp / Telegram", value: "@techfix_msk", href: "#", hint: "Отвечаем в течение 5 минут" },
                 { icon: "Mail", label: "Email", value: "info@techfix.ru", href: "mailto:info@techfix.ru", hint: "Для корпоративных запросов" },
                 { icon: "MapPin", label: "Адрес", value: "г. Москва, ул. Примерная, д. 1", href: "#", hint: "Пн–Вс: 9:00–21:00" },
               ].map((c) => (
-                <a key={c.label} href={c.href} className="flex items-start gap-4 card-tech rounded-lg p-5 group">
+                <a key={c.label} href={c.href} className="flex items-start gap-4 card-tech rounded-lg p-4 group">
                   <div className="w-10 h-10 rounded flex items-center justify-center shrink-0" style={{ background: "hsl(210 100% 56% / 0.1)", border: "1px solid hsl(210 100% 56% / 0.2)" }}>
                     <Icon name={c.icon as AnyIcon} size={18} style={{ color: "hsl(var(--neon))" }} />
                   </div>
                   <div>
                     <div className="font-golos text-xs text-muted-foreground mb-0.5">{c.label}</div>
-                    <div className="font-oswald text-lg font-semibold text-foreground">{c.value}</div>
+                    <div className="font-oswald text-base font-semibold text-foreground">{c.value}</div>
                     <div className="font-golos text-xs text-muted-foreground mt-0.5">{c.hint}</div>
                   </div>
                 </a>
               ))}
             </div>
           </div>
+
+          {/* MAP */}
+          <div className="mt-10 rounded-lg overflow-hidden" style={{ border: "1px solid hsl(210 100% 56% / 0.2)", height: "380px" }}>
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?ll=37.617635%2C55.755814&z=14&pt=37.617635%2C55.755814,pm2blm"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allowFullScreen
+              title="Карта ТЕХНОХАБ"
+              style={{ filter: "invert(0.85) hue-rotate(180deg) saturate(0.7)" }}
+            />
+          </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border py-8" style={{ background: "hsl(220 18% 7%)" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <img src="https://cdn.poehali.dev/files/05da3e15-a213-41a5-90c2-4139e7eef5c5.png" alt="ТЕХНОХАБ" className="h-7 w-7 object-contain" />
-            <span className="font-oswald text-base font-bold tracking-widest uppercase">
-              ТЕХНО<span className="neon-text">ХАБ</span>
-            </span>
+      <footer className="border-t border-border pt-8 pb-6" style={{ background: "hsl(220 18% 7%)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-5">
+            <div className="flex items-center gap-2">
+              <img src="https://cdn.poehali.dev/files/05da3e15-a213-41a5-90c2-4139e7eef5c5.png" alt="ТЕХНОХАБ" className="h-7 w-7 object-contain" />
+              <span className="font-oswald text-base font-bold tracking-widest uppercase">
+                ТЕХНО<span className="neon-text">ХАБ</span>
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-4 justify-center">
+              {NAV_LINKS.slice(0, 4).map((l) => (
+                <a key={l.href} href={l.href} className="font-golos text-xs text-muted-foreground hover:text-[hsl(var(--neon))] transition-colors">
+                  {l.label}
+                </a>
+              ))}
+            </div>
           </div>
-          <p className="font-golos text-xs text-muted-foreground text-center">
-            © 2026 ТЕХНОХАБ. Профессиональный ремонт компьютеров и ноутбуков в Москве.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            {NAV_LINKS.slice(0, 4).map((l) => (
-              <a key={l.href} href={l.href} className="font-golos text-xs text-muted-foreground hover:text-[hsl(var(--neon))] transition-colors">
-                {l.label}
-              </a>
-            ))}
+          <div className="border-t pt-4 flex flex-col sm:flex-row items-center justify-between gap-3" style={{ borderColor: "hsl(220 15% 14%)" }}>
+            <p className="font-golos text-xs text-muted-foreground text-center">
+              © 2026 ТЕХНОХАБ. Профессиональный ремонт компьютеров и ноутбуков в Москве.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              {([
+                { key: "privacy", label: "Политика конфиденциальности" },
+                { key: "offer_service", label: "Оферта услуг" },
+                { key: "offer_parts", label: "Оферта на комплектующие" },
+              ] as { key: NonNullable<ModalDoc>; label: string }[]).map((d) => (
+                <button
+                  key={d.key}
+                  onClick={() => setActiveDoc(d.key)}
+                  className="font-golos text-xs text-muted-foreground hover:text-[hsl(var(--neon))] transition-colors underline underline-offset-2"
+                >
+                  {d.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </footer>
