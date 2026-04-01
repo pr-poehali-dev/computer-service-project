@@ -90,11 +90,9 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <a href="#home" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded bg-[hsl(var(--neon))] flex items-center justify-center">
-                <Icon name="Cpu" size={18} className="text-white" />
-              </div>
+              <img src="https://cdn.poehali.dev/files/05da3e15-a213-41a5-90c2-4139e7eef5c5.png" alt="ТЕХНОХАБ" className="h-10 w-10 object-contain" />
               <span className="font-oswald text-xl font-bold tracking-widest uppercase">
-                Tech<span className="neon-text">Fix</span>
+                ТЕХНО<span className="neon-text">ХАБ</span>
               </span>
             </a>
 
@@ -307,7 +305,7 @@ const Index = () => {
               <p className="font-oswald text-sm tracking-widest uppercase mb-2" style={{ color: "hsl(var(--neon))" }}>// Кто мы</p>
               <h2 className="section-title text-foreground mb-6">О нас</h2>
               <p className="font-golos text-base text-muted-foreground leading-relaxed mb-5">
-                TechFix — профессиональный сервисный центр по ремонту компьютеров и ноутбуков. Работаем с 2019 года,
+                ТЕХНОХАБ — профессиональный сервисный центр по ремонту компьютеров и ноутбуков. Работаем с 2019 года,
                 за это время выполнили более 3 000 ремонтов для частных лиц, малого бизнеса и крупных корпораций.
               </p>
               <p className="font-golos text-base text-muted-foreground leading-relaxed mb-8">
@@ -495,15 +493,13 @@ const Index = () => {
       <footer className="border-t border-border py-8" style={{ background: "hsl(220 18% 7%)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded flex items-center justify-center" style={{ background: "hsl(var(--neon))" }}>
-              <Icon name="Cpu" size={14} className="text-white" />
-            </div>
+            <img src="https://cdn.poehali.dev/files/05da3e15-a213-41a5-90c2-4139e7eef5c5.png" alt="ТЕХНОХАБ" className="h-7 w-7 object-contain" />
             <span className="font-oswald text-base font-bold tracking-widest uppercase">
-              Tech<span className="neon-text">Fix</span>
+              ТЕХНО<span className="neon-text">ХАБ</span>
             </span>
           </div>
           <p className="font-golos text-xs text-muted-foreground text-center">
-            © 2026 TechFix. Профессиональный ремонт компьютеров и ноутбуков в Москве.
+            © 2026 ТЕХНОХАБ. Профессиональный ремонт компьютеров и ноутбуков в Москве.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             {NAV_LINKS.slice(0, 4).map((l) => (
