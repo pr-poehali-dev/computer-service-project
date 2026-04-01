@@ -595,10 +595,10 @@ const Index = () => {
 
             <div className="space-y-4">
               {[
-                { icon: "Phone", label: "Телефон", value: "+7 (495) 123-45-67", href: "tel:+74951234567", hint: "Звоните с 9:00 до 21:00, без выходных" },
+                { icon: "Phone", label: "Телефон", value: "+7 (495) 123-45-67", href: "tel:+74951234567", hint: "Пн–Пт: 9:00–19:00, Сб: 10:00–14:00, Вс: выходной" },
                 { icon: "MessageCircle", label: "WhatsApp / Telegram", value: "@techfix_msk", href: "#", hint: "Отвечаем в течение 5 минут" },
                 { icon: "Mail", label: "Email", value: "info@techfix.ru", href: "mailto:info@techfix.ru", hint: "Для корпоративных запросов" },
-                { icon: "MapPin", label: "Адрес", value: "г. Москва, ул. Примерная, д. 1", href: "#", hint: "Пн–Вс: 9:00–21:00" },
+                { icon: "MapPin", label: "Адрес", value: "г. Москва, ул. Примерная, д. 1", href: "#", hint: "Пн–Пт: 9:00–19:00, Сб: 10:00–14:00, Вс: выходной" },
               ].map((c) => (
                 <a key={c.label} href={c.href} className="flex items-start gap-4 card-tech rounded-lg p-4 group">
                   <div className="w-10 h-10 rounded flex items-center justify-center shrink-0" style={{ background: "hsl(210 100% 56% / 0.1)", border: "1px solid hsl(210 100% 56% / 0.2)" }}>
