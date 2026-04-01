@@ -493,10 +493,7 @@ const Index = () => {
                 className="rounded-lg w-full object-cover aspect-[4/3]"
                 style={{ border: "1px solid hsl(var(--border))" }}
               />
-              <div className="absolute -bottom-4 -left-4 rounded-lg px-5 py-4 shadow-lg" style={{ background: "hsl(var(--card))", border: "1px solid hsl(210 100% 56% / 0.4)" }}>
-                <div className="font-oswald text-2xl font-bold neon-text">5+ лет</div>
-                <div className="font-golos text-xs text-muted-foreground">на рынке Москвы</div>
-              </div>
+
               <div className="absolute -top-4 -right-4 rounded-lg px-5 py-4 shadow-lg" style={{ background: "hsl(var(--neon))" }}>
                 <div className="font-oswald text-2xl font-bold text-white">97%</div>
                 <div className="font-golos text-xs" style={{ color: "rgba(255,255,255,0.8)" }}>довольных клиентов</div>
